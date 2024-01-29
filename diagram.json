@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Arik",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -105.6, "left": -91.16, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -147.2,
+      "left": 82.4,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-ky-040", "id": "encoder1", "top": -55.9, "left": -250.4, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -361.19,
+      "left": -383.57,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-a4988", "id": "drv1", "top": -302.4, "left": -187.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -392.84, "left": -144, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": -393.6, "left": -183, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.2", "encoder1:GND", "black", [ "v0", "h28.8", "v-38.4", "h-153.6", "v105.6" ] ],
+    [ "encoder1:VCC", "esp:3V3", "red", [ "h28.8", "v-57.2" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-38.4", "v38.4" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-9.6", "v230.5", "h-163.2" ] ],
+    [ "encoder1:CLK", "esp:12", "green", [ "h38.4", "v86.4", "h-9.6" ] ],
+    [ "esp:13", "encoder1:DT", "green", [ "h-38.25", "v-96" ] ],
+    [ "encoder1:SW", "esp:5", "green", [ "h0", "v144.1", "h201.6", "v-105.6" ] ],
+    [ "esp:22", "lcd1:SCL", "green", [ "h57.6", "v-28.8" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-57.6", "v67.4" ] ],
+    [ "drv1:VMOT", "vcc1:VCC", "green", [ "h0" ] ],
+    [ "drv1:GND.2", "gnd1:GND", "black", [ "h9.75", "v-38.32", "h-48" ] ]
+  ],
+  "dependencies": {}
+}
